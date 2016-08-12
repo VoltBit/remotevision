@@ -1,0 +1,17 @@
+
+network={
+	ssid=asasfasf
+	key_mgmt=NONE
+},
+network={
+	ssid=asasfasf
+	key_mgmt=NONE
+}
+network={
+	ssid=asasfasf
+	key_mgmt=NONE
+}
+network={
+	ssid="asasfasf"
+	key_mgmt=NONE
+}

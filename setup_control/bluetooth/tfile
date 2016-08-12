@@ -1,0 +1,17 @@
+
+
+
+
+
+network={
+	ssid="PRECIS"
+	key_mgmt=NONE
+}
+network={
+	ssid="PRECIS"
+	key_mgmt=NONE
+}
+network={
+	ssid="PRECIS"
+	key_mgmt=NONE
+}

@@ -1,0 +1,9 @@
+Can't open session with the device: Host is down
+Found E6:68:46:15:2A:66  Viper_E, searching for the the desired service on it now
+Can't open session with the device: Host is down
+*** Error in `/home/pi/remote_vision/setup_control/bluetooth/btclient': double free or corruption (fasttop): 0x000263c0 ***
+
+Program received signal SIGABRT, Aborted.
+0x76e57f70 in __GI_raise (sig=sig@entry=6)
+    at ../nptl/sysdeps/unix/sysv/linux/raise.c:56
+56	../nptl/sysdeps/unix/sysv/linux/raise.c: No such file or directory.
