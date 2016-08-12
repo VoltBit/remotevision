@@ -18,7 +18,7 @@ the camera module and an external 8000-12000mA battery.
 
 1. Video streaming and audio commands - RPI&Camera, gstreamer
 
-   Video streaming is achieved through RDP cannels created with gstreamer.
+   Video streaming is achieved through RTP cannels created with gstreamer.
 
 2. Wi-Fi setup and volume control - Bluetooth, Wi-Fi, Android
 
