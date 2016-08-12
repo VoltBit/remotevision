@@ -3,7 +3,7 @@
 ## About
 
 RemoteVision is project that aims to provide live video streaming from a
-wearable headset and provide de wearer with audio feedback from a viewer.
+wearable headset and offers the wearer audio feedback from a viewer.
 
 v1.0
 The headset is based of a RaspberryPI 2 with a version 1 camera module. The
@@ -14,16 +14,16 @@ The rest of the hardware are: a GoPro headstrap mount, a 3D printed case for the
 camera module to fit the GoPro locking mechanism, an HDMI based extender for
 the camera module and an external 8000-12000mA battery.
 
-Prerequisites
-
 ## Main components
 
 1. Video streaming and audio commands - RPI&Camera, gstreamer
-	Video streaming is achieved through RDP cannels created with gstreamer.
+
+Video streaming is achieved through RDP cannels created with gstreamer.
 
 2. Wi-Fi setup and volume control - Bluetooth, Wi-Fi, Android
-	Since the headset is a headless Linux machine one wireless way to interact
-	with it for setup purposes is via Bluetooth.
+
+Since the headset is a headless Linux machine one wireless way to interact with
+it for setup purposes is via Bluetooth.
 
 
 ## ToDo
