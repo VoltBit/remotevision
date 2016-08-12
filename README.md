@@ -54,7 +54,7 @@ determined before the setup.
 The scanning function of the library also leads to memory leaks. Alternative:
 python Cell and Scheme modules.
 
-+ gstreamer doesnt't seem to work in a virtual machine, even with 3d video
++ gstreamer doesn't seem to work in a virtual machine, even with 3d video
 acceleration enabled
 
 + the wpa_supplicant config file required privileged rights so the entire
