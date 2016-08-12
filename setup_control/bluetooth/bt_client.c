@@ -327,8 +327,6 @@ int main(void) {
 	wifi_scan();
 	start_bt_client();
 	delete_ssids();
-	strcpy(password, "NPASS");
-	strcpy(ssid, "PRECIS");
 	printf("Setup info:\nSSID:\t%s\nPasKey:\t%s\n", ssid, password);
 	if (strcmp(password, "NPASS")) {
 		printf("%i\n", strcmp("NPASS", password));
