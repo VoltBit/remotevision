@@ -63,11 +63,9 @@ wifi scan and bluetooth communication parts will also have priviledged rights
 
 + WEP and WPA-PSK Enterprise not supported
 
-+ passwordless netowrks not supported, allow passwordless input and change
-communication protocol
-
 + implement the checkbox in android app that allows the user to see the
 password
 
-- cancel button
+- "Cancel" button breaks functionality
+
 - pass visibility password
