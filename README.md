@@ -69,3 +69,9 @@ password
 - "Cancel" button breaks functionality
 
 - pass visibility password
+
+[Android Bluetooth doc](https://developer.android.com/guide/topics/connectivity/bluetooth.html)
+
+[C Bluetooth Linux] (https://people.csail.mit.edu/albert/bluez-intro/)
+
+[C Bluetooth client example] (http://www.humbug.in/2010/sample-bluetooth-rfcomm-client-app-in-c/)
