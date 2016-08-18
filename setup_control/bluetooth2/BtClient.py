@@ -22,18 +22,18 @@ class BtClient:
 		self.powerOn = False
 		self.btsock = None
 
-	def startDevice(self):
+	def start_device(self):
 		os.system("rfkill unblock all")
 		os.system("hciconfig hci0 up")
 		os.system("hciconfig hci0 piscan")
 		time.sleep(1)
 		self.powerOn = True
 
-	def stopDevice(self):
+	def stop_device(self):
 		os.system("hciconfig hci0 down")
 		time.sleep(1)
 
-	def startClient(self):
+	def start_client(self):
 		if not self.powerOn:
 			self.startDevice()
 
@@ -50,10 +50,10 @@ class BtClient:
 
 		print "connecting to \"%s\" on %s" % (name, host)
 
-		self.btsock=bluetooth.BluetoothSocket(bluetooth.RFCOMM)
+		self.btsock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
 		self.btsock.connect((host, port))
 
-	def sendMessage(self, message):
+	def send_message(self, message):
 		self.btsock(message)		
 
 	def clean(self):

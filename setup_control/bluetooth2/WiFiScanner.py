@@ -17,7 +17,7 @@ class WiFiScanner:
 		self.interface = str(stdout[0])[:-1]
 		print "Interface: ", self.interface
 
-	def startScan(self):
+	def start_scan(self):
 		if self.interface == "":
 			self.get_wifi_interface()
 			if self.interface == "":
