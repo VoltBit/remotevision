@@ -35,13 +35,13 @@ class BtClient:
 
 	def start_client(self):
 		if not self.powerOn:
-			self.startDevice()
+			self.start_device()
 
 		service_matches = bluetooth.find_service(uuid = self.uuid)
 
 		if len(service_matches) == 0:
-		    print "Couldn't find the RemoteVision service"
-		    sys.exit(0)
+			print "Couldn't find the RemoteVision service"
+			return False
 
 		first_match = service_matches[0]
 		port = first_match["port"]
@@ -52,10 +52,14 @@ class BtClient:
 
 		self.btsock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
 		self.btsock.connect((host, port))
+		return True
 
 	def send_message(self, message):
-		self.btsock(message)		
+		self.btsock.send(message)
+
+	def receive_message(self):
+		return self.btsock.recv(1024)
 
 	def clean(self):
 		self.btsock.close()
-		stopDevice()
+		self.stop_device()
