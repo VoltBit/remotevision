@@ -35,17 +35,6 @@ the camera module and an external 8000-12000mA battery.
 + Audio stream that can take audio input from the viewer and send it to the
 wearer
 
-+ The Bluetooth communication currently consists of a server running on the
-Android device that opens a Bluetooth socket and listens for incomming
-connections. The headset runns a Bluetooth client written in C that scans for
-nearby devices and connects to the phone application. The problem with this
-approach is that scanning for devices is power consumming and this operation
-should be mitigated to the Android device. The roles should be reversed such
-that the headset becomes the server. Unfortunately, Bluetooth programming in C
-has very little documentation and therefore it is recommended to use Python
-instead. PyBlueZ library provides high level functionalities for Python2
-while Python3 integrates Bluetooth capabilities since version 3.3.
-
 + The scripting done for setting up Internet and Bluetooth adapters do not
 assume a change in configuration. The name of the adapters should be dynamically
 determined before the setup.

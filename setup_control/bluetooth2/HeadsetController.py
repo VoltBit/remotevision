@@ -10,9 +10,10 @@ class HeadsetController:
 		self.move_up = "/home/pi/remote_vision/audio_video/forward.ogg"
 		self.move_down = "/home/pi/remote_vision/audio_video/back.ogg"
 
+		self.target = "192.168.1.3"
 		self.source = "raspivid -n -w 1280 -h 720 -b 4500000 -fps 30 -vf -hf -t 0 -o - | "
 		self.player = "gst-launch-1.0 -q -v fdsrc !  h264parse ! rtph264pay config-interval=10 pt=96 ! "
-		self.setting = "udpsink host=10.42.0.1 port=9000"
+		self.setting = "udpsink host=" + self.target + " port=9000"
 
 	def talk(self, msg):
 		if msg == "Right":
@@ -35,7 +36,7 @@ class HeadsetController:
 		#host = "10.42.0.1"
 		port = 8014
 		s.connect((host, port))
-		start_video()
+		self.start_video()
 
 		while True:
 			data = s.recv(1024)
@@ -44,12 +45,12 @@ class HeadsetController:
 				print("Connected to master at", s.getpeername())
 			elif msg != "":
 				print("Received command: ", msg)
-				talk(msg)
+				self.talk(msg)
 		s.close()
 
 	def start_stream(self):
-		com_thread = Thread(target = com_net,)
-		video_thread = Thread(target = start_video,)
+		com_thread = Thread(target = self.com_net,)
+		video_thread = Thread(target = self.start_video,)
 
 		com_thread.start()
 		video_thread.start()
