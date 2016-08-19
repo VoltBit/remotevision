@@ -3,7 +3,8 @@ prerequisites:
 rfkill
 bluetooth
 bluez
-python-bluetooth
+python-bluez
+
 """
 
 import sys

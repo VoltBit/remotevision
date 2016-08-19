@@ -23,9 +23,12 @@ def main():
 	ssid = bt_client.receive_message()
 	print "ssid: " + ssid
 	bt_client.send_message("SSID_OVER")
+	bt_client.receive_message()
+	# why are there two pass messages? check the Android code
 	passw = bt_client.receive_message()
 	print "Pass: " + passw
 	bt_client.send_message("PASS_OVER")
+	bt_client.send_message("test")
 	"""
 	if passw == "NPASS":
 		print Popen(["../wifi_setup.sh", ssid], stdout=PIPE).comunicate()
