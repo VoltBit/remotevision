@@ -10,6 +10,7 @@ import sys
 import bluetooth
 import os
 import time
+import subprocess
 
 """
 The class that encapsulates all necessary elements for bluetooth
@@ -21,6 +22,12 @@ class BtClient:
 		self.uuid = "f9cf2946-d67d-4e6d-8dbd-2a1cd6794753"
 		self.powerOn = False
 		self.btsock = None
+
+	def get_device(self):
+		get_dev_comm = "hcitool dev | tail -n 1 | awk '{print $1}'"
+		msg = subprocess.Popen([get_dev_comm], shell=True, stdout=subprocess.PIPE).communicate()
+		self.btdev = str(msg[0])[:-1]
+		print "Bluetooth interface: ", self.btdev
 
 	def start_device(self):
 		os.system("rfkill unblock all")
