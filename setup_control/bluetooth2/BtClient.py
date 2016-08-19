@@ -18,7 +18,7 @@ The class that encapsulates all necessary elements for bluetooth
 communication.
 """
 class BtClient:
-	
+
 	def __init__(self):
 		self.uuid = "f9cf2946-d67d-4e6d-8dbd-2a1cd6794753"
 		self.powerOn = False
