@@ -4,26 +4,30 @@ from threading import Thread
 
 class HeadsetController:
 	def __init__(self):
-		self.audio_player = "gst-launch-1.0 -q playbin uri=file://"
+		self.volume = -1000 # milidecibles - 0 is default
+		# self.audio_player = "gst-launch-1.0 -q playbin uri=file://"
+		self.audio_player = "omxplayer --no-osd --vol " + str(self.volume) + " "
 		self.move_right = "/home/pi/remotevision/audio_video/right.ogg"
 		self.move_left = "/home/pi/remotevision/audio_video/left.ogg"
 		self.move_up = "/home/pi/remotevision/audio_video/forward.ogg"
 		self.move_down = "/home/pi/remotevision/audio_video/back.ogg"
 
-		self.target = "192.168.1.3"
+		self.target = "192.168.1.2"
 		self.source = "raspivid -n -w 1280 -h 720 -b 4500000 -fps 30 -vf -hf -t 0 -o - | "
 		self.player = "gst-launch-1.0 -q -v fdsrc !  h264parse ! rtph264pay config-interval=10 pt=96 ! "
 		self.setting = "udpsink host=" + self.target + " port=9000"
 
+		self.silencer = " > /dev/null 2>&1 "
+
 	def talk(self, msg):
 		if msg == "Right":
-			os.system(self.audio_player + self.move_right)
+			os.system(self.audio_player + self.move_right + self.silencer)
 		elif msg == "Left":
-			os.system(self.audio_player + self.move_left)
+			os.system(self.audio_player + self.move_left + self.silencer)
 		elif msg == "Up":
-			os.system(self.audio_player + self.move_up)
+			os.system(self.audio_player + self.move_up + self.silencer)
 		elif msg == "Down":
-			os.system(self.audio_player + self.move_down)
+			os.system(self.audio_player + self.move_down + self.silencer)
 		elif msg != "":
 			print("Unknown message: ", msg)
 
