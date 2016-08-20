@@ -5,10 +5,10 @@ from threading import Thread
 class HeadsetController:
 	def __init__(self):
 		self.audio_player = "gst-launch-1.0 -q playbin uri=file://"
-		self.move_right = "/home/pi/remote_vision/audio_video/right.ogg"
-		self.move_left = "/home/pi/remote_vision/audio_video/left.ogg"
-		self.move_up = "/home/pi/remote_vision/audio_video/forward.ogg"
-		self.move_down = "/home/pi/remote_vision/audio_video/back.ogg"
+		self.move_right = "/home/pi/remotevision/audio_video/right.ogg"
+		self.move_left = "/home/pi/remotevision/audio_video/left.ogg"
+		self.move_up = "/home/pi/remotevision/audio_video/forward.ogg"
+		self.move_down = "/home/pi/remotevision/audio_video/back.ogg"
 
 		self.target = "192.168.1.3"
 		self.source = "raspivid -n -w 1280 -h 720 -b 4500000 -fps 30 -vf -hf -t 0 -o - | "
@@ -32,8 +32,9 @@ class HeadsetController:
 
 	def com_net(self):
 		s = socket.socket()
-		host = socket.gethostname()
-		#host = "10.42.0.1"
+		# host = socket.gethostname()
+		# host = "10.42.0.1"
+		host = self.target
 		port = 8014
 		s.connect((host, port))
 		self.start_video()

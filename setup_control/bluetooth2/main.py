@@ -1,9 +1,14 @@
 from BtClient import BtClient
 from WiFiScanner import WiFiScanner
 from HeadsetController import HeadsetController
+from subprocess import Popen, PIPE
+import RPi.GPIO as GPIO
 import time
 import os
-from subprocess import Popen, PIPE
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 def main():
 	# try_count = 0
@@ -38,6 +43,8 @@ def main():
 	# ping_test = wifi_scanner.check_connection()
 	# if ping_test[0] == "ok" and ping_test[1] == "ok":
 	# 	print "Internet access"
+	while not GPIO.input(17) and not GPIO.input(27):
+		time.sleep(1)
 	headset_ctrl = HeadsetController()
 	headset_ctrl.start_stream()
 
