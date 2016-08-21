@@ -12,7 +12,6 @@ streamer = "C:\\Users\\Andrei-CiprianDOBRE\\Desktop\\master.bat"
 s = socket.socket()
 socket_lock = Lock()
 key_buffer = ""
-connected = False
 
 def com_net():
 	global s
@@ -31,7 +30,6 @@ def com_net():
 	c, addr = s.accept()
 	c.send(message.encode('utf-8'))
 	print("Connected to ", addr)
-	connected = True
 
 	while key_buffer != "Escape":
 		if key_buffer != "":
@@ -53,18 +51,6 @@ def key(event):
 
 def com_input():
 	root = Tk()
-	root.geometry("200x150")
-	text = Text(root)
-	if not connected:
-		text.insert(INSERT, "Connection pending...")
-		text.tag_add("conn", "0.1", "2.0")
-		text.tag_config("conn", background="white", foreground="red")
-	else:
-		text.insert(INSERT, "Connected!")
-		text.tag_add("conn", "0.1", "2.0")
-		text.tag_config("conn", background="white", foreground="green")
-	text.pack()
-
 	root.bind("<Key>", key)
 	root.mainloop()
 	socket_lock.acquire()
@@ -94,18 +80,16 @@ def play_video():
 
 def main():
 	key_input_thread = Thread(target = com_input,)
-	# net_output_thread = Thread(target = com_net,)
-	# video_player_thread = Thread(target = play_video,)
+	net_output_thread = Thread(target = com_net,)
+	video_player_thread = Thread(target = play_video,)
 
 	key_input_thread.start()
-	# net_output_thread.start()
-	# while not connected:
-	# 	time.sleep(1)
-	# video_player_thread.start()
+	net_output_thread.start()
+	video_player_thread.start()
 
-	# key_input_thread.join()
-	# net_output_thread.join()
-	# video_player_thread.join()
+	key_input_thread.join()
+	net_output_thread.join()
+	video_player_thread.join()
 	s.close()
 	# com_testing()
 
