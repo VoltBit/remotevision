@@ -5,6 +5,7 @@ from subprocess import Popen, PIPE
 import RPi.GPIO as GPIO
 import time
 import os
+import sys
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
@@ -18,22 +19,15 @@ def wifi_check(wifi_scanner):
 	print "No Internet access"
 	return False
 
-def main():
-	while not GPIO.input(17) and not GPIO.input(27):
-		time.sleep(1)
-
-	if wifi_check(wifi_scanner):
-		sys.exit(0)
-
+def bluetooth(wifi_scanner):
 	try_count = 0
+	wifi_scanner.start_scan()
 	bt_client = BtClient()
 	while not bt_client.start_client() and try_count < 20:
 		try_count += 1
 	if try_count == 20:
 		print "Bluetooth client could not be started"
 		sys.exit(0)
-	wifi_scanner = WiFiScanner()
-	wifi_scanner.start_scan()
 	for n in wifi_scanner.networkList:
 		print n
 		bt_client.send_message(n)
@@ -54,6 +48,14 @@ def main():
 		os.system("../wifi_setup.sh " + ssid + " " + passw)
 
 	bt_client.clean()
+
+def main():
+	while not GPIO.input(17) and not GPIO.input(27):
+		time.sleep(1)
+
+	wifi_scanner = WiFiScanner()
+	if not wifi_check(wifi_scanner):
+		bluetooth(wifi_scanner)
 
 	if wifi_check(wifi_scanner):
 		headset_ctrl = HeadsetController()
