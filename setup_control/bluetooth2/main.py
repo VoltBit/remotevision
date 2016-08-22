@@ -50,16 +50,17 @@ def bluetooth(wifi_scanner):
 	bt_client.clean()
 
 def main():
-	while not GPIO.input(17) and not GPIO.input(27):
-		time.sleep(1)
+	while(True):
+		while not GPIO.input(17) and not GPIO.input(27):
+			time.sleep(1)
 
-	wifi_scanner = WiFiScanner()
-	if not wifi_check(wifi_scanner):
-		bluetooth(wifi_scanner)
+		wifi_scanner = WiFiScanner()
+		if not wifi_check(wifi_scanner):
+			bluetooth(wifi_scanner)
 
-	if wifi_check(wifi_scanner):
-		headset_ctrl = HeadsetController()
-		headset_ctrl.start_stream()
+		if wifi_check(wifi_scanner):
+			headset_ctrl = HeadsetController()
+			headset_ctrl.start_stream()
 
 if __name__ == "__main__":
 	main()
