@@ -1,5 +1,6 @@
 import socket
 import os
+import time
 from threading import Thread
 
 class HeadsetController:
@@ -58,6 +59,7 @@ class HeadsetController:
 		video_thread = Thread(target = self.start_video,)
 
 		com_thread.start()
+		time.sleep(1)
 		video_thread.start()
 
 		com_thread.join()

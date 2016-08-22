@@ -16,8 +16,11 @@ else
 		else
 			printf '\n' >> /etc/wpa_supplicant/wpa_supplicant.conf; wpa_passphrase "$1" $2 >> /etc/wpa_supplicant/wpa_supplicant.conf
 			# printf '\n\n' >> tfile; wpa_passphrase "$1" $2 >> tfile
+			ifdown wlan0
+			ifup wlan0
 			killall -HUP wpa_supplicant
 			wpa_cli terminate
+			sleep 3
 			wpa_supplicant -B -iwlan0 -c/etc/wpa_supplicant/wpa_supplicant.conf
 			# ifdown wlan0
 			# ifup wlan0

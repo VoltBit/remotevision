@@ -25,7 +25,7 @@ def bluetooth(wifi_scanner):
 	bt_client = BtClient()
 	while not bt_client.start_client() and try_count < 20:
 		try_count += 1
-	if try_count == 20:
+	if try_count == 40:
 		print "Bluetooth client could not be started"
 		sys.exit(0)
 	for n in wifi_scanner.networkList:
@@ -43,24 +43,28 @@ def bluetooth(wifi_scanner):
 	bt_client.send_message("test")
 
 	if passw == "NPASS":
-		os.system("../wifi_setup.sh " + ssid)
+		os.system("/home/pi/remotevision/setup_control/wifi_setup.sh " + ssid)
 	else:
-		os.system("../wifi_setup.sh " + ssid + " " + passw)
+		os.system("/home/pi/remotevision/setup_control/wifi_setup.sh " + ssid + " " + passw)
 
 	bt_client.clean()
 
 def main():
+	try_count = 30
+	logf = open("/home/pi/remotevision/log", "a")
+	logf.write("\nRemoteVision started")
 	while(True):
 		while not GPIO.input(17) and not GPIO.input(27):
 			time.sleep(1)
-
 		wifi_scanner = WiFiScanner()
 		if not wifi_check(wifi_scanner):
 			bluetooth(wifi_scanner)
-
+		time.sleep(10)
 		if wifi_check(wifi_scanner):
 			headset_ctrl = HeadsetController()
 			headset_ctrl.start_stream()
+		time.sleep(1)
+	logf.write("RemoteVision stopped...")
 
 if __name__ == "__main__":
 	main()
