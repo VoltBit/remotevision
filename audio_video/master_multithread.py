@@ -12,11 +12,13 @@ streamer = "C:\\Users\\Andrei-CiprianDOBRE\\Desktop\\master.bat"
 s = socket.socket()
 socket_lock = Lock()
 key_buffer = ""
+conn_status = None
 
 def com_net():
 	global s
 	global socket_lock
 	global key_buffer
+	global conn_status
 
 	message = "Connected"
 
@@ -30,7 +32,7 @@ def com_net():
 	c, addr = s.accept()
 	c.send(message.encode('utf-8'))
 	print("Connected to ", addr)
-
+	conn_status.set("Connected!")
 	while key_buffer != "Escape":
 		if key_buffer != "":
 			c.send(key_buffer.encode('utf-8'))
@@ -50,12 +52,19 @@ def key(event):
 
 
 def com_input():
+	global conn_status
+
 	root = Tk()
+	root.geometry("200x100")
+	conn_status = StringVar()
+	conn_status.set("Connection pending...")
+	Label(root, textvariable=conn_status).pack()
 	root.bind("<Key>", key)
 	root.mainloop()
 	socket_lock.acquire()
 	key_buffer = "Escape"
 	socket_lock.release()
+	conn_status = None
 	exit()
 
 def com_testing():
