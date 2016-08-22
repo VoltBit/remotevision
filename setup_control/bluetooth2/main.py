@@ -50,16 +50,21 @@ def bluetooth(wifi_scanner):
 	bt_client.clean()
 
 def main():
-	try_count = 30
+
 	logf = open("/home/pi/remotevision/log", "a")
 	logf.write("\nRemoteVision started")
 	while(True):
+		try_count = 30
 		while not GPIO.input(17) and not GPIO.input(27):
 			time.sleep(1)
 		wifi_scanner = WiFiScanner()
 		if not wifi_check(wifi_scanner):
 			bluetooth(wifi_scanner)
-		time.sleep(10)
+		while try_count > 0:
+			try_count -= 1
+			if wifi_check(wifi_scanner):
+				break
+			time.sleep(0.5)
 		if wifi_check(wifi_scanner):
 			headset_ctrl = HeadsetController()
 			headset_ctrl.start_stream()
