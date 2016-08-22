@@ -6,19 +6,21 @@ import os
 from tkinter import *
 from threading import Thread, Lock
 
-#streamer = "gst-launch-1.0 -q -v udpsrc port=9000 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264' ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink sync=false"
-streamer = "C:\\Users\\Andrei-CiprianDOBRE\\Desktop\\master.bat"
+streamer = "gst-launch-1.0 -q -v udpsrc port=9000 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264' ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink sync=false"
+#streamer = "C:\\Users\\Andrei-CiprianDOBRE\\Desktop\\master.bat"
 
 s = socket.socket()
 socket_lock = Lock()
 key_buffer = ""
 conn_status = None
+connected = False
 
 def com_net():
 	global s
 	global socket_lock
 	global key_buffer
 	global conn_status
+	global connected
 
 	message = "Connected"
 
@@ -31,6 +33,7 @@ def com_net():
 	s.listen(5)
 	c, addr = s.accept()
 	c.send(message.encode('utf-8'))
+	connected = True
 	print("Connected to ", addr)
 	conn_status.set("Connected!")
 	while key_buffer != "Escape":
@@ -88,12 +91,16 @@ def play_video():
 	os.system(streamer)
 
 def main():
+	global connected
+
 	key_input_thread = Thread(target = com_input,)
 	net_output_thread = Thread(target = com_net,)
 	video_player_thread = Thread(target = play_video,)
 
 	key_input_thread.start()
 	net_output_thread.start()
+	#while not connected:
+	#	pass	
 	video_player_thread.start()
 
 	key_input_thread.join()
