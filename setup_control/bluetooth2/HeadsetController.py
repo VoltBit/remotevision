@@ -13,7 +13,8 @@ class HeadsetController:
 		self.move_up = "/home/pi/remotevision/audio_video/forward.ogg"
 		self.move_down = "/home/pi/remotevision/audio_video/back.ogg"
 
-		self.target = "192.168.1.3"
+#		self.target = "192.168.1.3"
+		self.target = "172.19.7.106"
 		self.source = "raspivid -n -w 1280 -h 720 -b 4500000 -fps 30 -vf -hf -t 0 -o - | "
 		self.player = "gst-launch-1.0 -q -v fdsrc !  h264parse ! rtph264pay config-interval=10 pt=96 ! "
 		self.setting = "udpsink host=" + self.target + " port=9000"

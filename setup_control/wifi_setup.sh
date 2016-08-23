@@ -8,6 +8,12 @@ else
 	then
 		# printf "\nnetwork={\n\tssid="%s"\n\tkey_mgmt=NONE\n}" "\"$1\"" >> tfile
 		printf "\nnetwork={\n\tssid="%s"\n\tkey_mgmt=NONE\n}" "\"$1\"" >> /etc/wpa_supplicant/wpa_supplicant.conf
+		ifdown wlan0
+                ifup wlan0
+                killall -HUP wpa_supplicant
+                wpa_cli terminate
+                sleep 3
+                wpa_supplicant -B -iwlan0 -c/etc/wpa_supplicant/wpa_supplicant.conf
 	else
 		if [ ${#1} -gt 32 ] || [ ${#2} -lt 8 ] || [ ${#2} -gt 63 ]
 		then
