@@ -38,6 +38,10 @@ headset. Here, the phone is a server and the headset is a client that has to sca
 The advantage is the ease of working with the code since it is quite modular and
 written in Python (both the Bluetooth client, the WiFi search and setup programs).
 
+For missing features and other problems check the issue list.
+
+Documentation
+
 [Android Bluetooth doc](https://developer.android.com/guide/topics/connectivity/bluetooth.html)
 
 [C Bluetooth Linux] (https://people.csail.mit.edu/albert/bluez-intro/)
