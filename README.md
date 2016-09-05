@@ -25,39 +25,18 @@ the camera module and an external 8000-12000mA battery.
    Since the headset is a headless Linux machine one wireless way to interact with
    it for setup purposes is via Bluetooth.
 
+Currently there are two different implementations of the heaset software. First
+version uses the phone as a client and the headset as a server (Bluetooth). The
+advantage is that using the headset as a server avoids the need to scan for
+devices. Bluetooth device scanning is an expensive operation in terms of power
+usage. The Android phone is required to scan for headsets. The disadvantage of
+this version is that it is written in C using undocumented libraries (for
+Bluetooth and WiFi).
 
-## ToDo
-
-3. Over the Interent communication - the server
-
-### Other issues or features that should be implemented or changed
-
-+ Audio stream that can take audio input from the viewer and send it to the
-wearer
-
-+ The scripting done for setting up Internet and Bluetooth adapters do not
-assume a change in configuration. The name of the adapters should be dynamically
-determined before the setup.
-
-+ The library used to scan for Wi-Fi networks - iwlib - has 0 documentation.
-The scanning function of the library also leads to memory leaks. Alternative:
-python Cell and Scheme modules.
-
-+ gstreamer doesn't seem to work in a virtual machine, even with 3d video
-acceleration enabled
-
-+ the wpa_supplicant config file required privileged rights so the entire
-program need to be run with sudo - this might be unsave since it means the
-wifi scan and bluetooth communication parts will also have priviledged rights
-
-+ WEP and WPA-PSK Enterprise not supported
-
-+ implement the checkbox in android app that allows the user to see the
-password
-
-- "Cancel" button breaks functionality
-
-- pass visibility password
+The second version reverses the roles of client-server between the phone and the
+headset. Here, the phone is a server and the headset is a client that has to scan.
+The advantage is the ease of working with the code since it is quite modular and
+written in Python (both the Bluetooth client, the WiFi search and setup programs).
 
 [Android Bluetooth doc](https://developer.android.com/guide/topics/connectivity/bluetooth.html)
 
