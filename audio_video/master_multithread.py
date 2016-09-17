@@ -6,8 +6,9 @@ import os
 from tkinter import *
 from threading import Thread, Lock
 
-streamer = "gst-launch-1.0 -q -v udpsrc port=9000 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264' ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink sync=false"
-#streamer = "C:\\Users\\Andrei-CiprianDOBRE\\Desktop\\master.bat"
+# streamer = "gst-launch-1.0 -q -v udpsrc port=9000 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264' ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink sync=false"
+# streamer = "C:\\Users\\Andrei-CiprianDOBRE\\Desktop\\master.bat"
+streamer = ""
 
 s = socket.socket()
 socket_lock = Lock()
@@ -92,7 +93,18 @@ def play_video():
 
 def main():
 	global connected
+	global streamer
 
+	if os.name == "nt": # if running on Windows, ask for script location
+		streamer = input("Path to stream script: ")
+		streamer = streamer.replace("\\", "\\\\")
+		streamer = streamer.replace("/", "\\")
+	elif os.name == "posix": # running on Linux
+		streamer = "gst-launch-1.0 -q -v udpsrc port=9000 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264' ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink sync=false"
+	else:
+		print("Error: unknown opperating system. Assume Linux.")
+		streamer = "gst-launch-1.0 -q -v udpsrc port=9000 caps='application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264' ! rtph264depay ! avdec_h264 ! videoconvert ! autovideosink sync=false"
+	print(streamer)
 	key_input_thread = Thread(target = com_input,)
 	net_output_thread = Thread(target = com_net,)
 	video_player_thread = Thread(target = play_video,)
@@ -107,7 +119,7 @@ def main():
 	net_output_thread.join()
 	video_player_thread.join()
 	s.close()
-	# com_testing()
+	com_testing()
 
 if __name__ == "__main__":
 	main()
