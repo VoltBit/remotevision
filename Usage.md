@@ -37,7 +37,7 @@ Dupa conectarea la retea aplicatia de desktop deschide o fereastra cu stream-ul 
 - Pentru a putea trimite comenzi audio prin sageti interfata grafica trebuie selectata (adica sa fie in prim plan)
 Daca conexiunea la internet se pierde, aplicatia desktop este inchisa sau alte probleme de genul aplicatia de desktop poate fi redeschisa si stream-ul video continua sa mearga (teoretic), dar nu si conexiunea pentru trimiterea comenzilor din sageti (pentru aceasta trebuie resetat RPI-ul)
 
-- Aplicaia desktop trebuie deschisa prima (altfel nu merg comenzile din sageti, stream-ul video ar trebui sa mearga oricum)
+- Aplicatia desktop trebuie deschisa prima (altfel nu merg comenzile din sageti, stream-ul video ar trebui sa mearga oricum)
 
 - La fiecare reset al RPI-ului, est nevoe de folosirea aplicatiei android, aplicatia android trebuie restartata si ea (butonul de Reset are de fapt aceeasi functie, dar e mai sigur cu close/open)
 
