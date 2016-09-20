@@ -1,3 +1,5 @@
+[Arhiva: https://drive.google.com/file/d/0B4RO6mhqKJYhc2Y0Y0x5eXB5Vms/view?usp=sharing](https://drive.google.com/file/d/0B4RO6mhqKJYhc2Y0Y0x5eXB5Vms/view?usp=sharing)
+
 - Setup windows: instalare gstreamer, configurare fisier batch cu path-ul catre folderul bin din folderul de instalare al gstreamer
 
 fisierul batch:
