@@ -1,4 +1,4 @@
-1. Setup windows: instalare gstreamer, configurare fisier batch cu path-ul catre folderul bin din folderul de instalare al gstreamer
+- Setup windows: instalare gstreamer, configurare fisier batch cu path-ul catre folderul bin din folderul de instalare al gstreamer
 
 fisierul batch:
 
@@ -9,27 +9,27 @@ cd gstreamer\1.0\x86_64\bin
 gst-launch-1.0 -e -v udpsrc port=9000 ! application/x-rtp, payload=96 ! rtpjitterbuffer ! rtph264depay ! avdec_h264 ! fpsdisplaysink sync=false text-overlay=false
 
 
-2. Rulare aplicatie desktop:
+- Rulare aplicatie desktop:
 
 remotevision/audio_video/dist/master_multithread.exe
 
 Dupa initialziare, terminalul cere o cale catre fisierul batch.
 
-3. Rulare aplicatie android
+- Rulare aplicatie android
 
-4. Initializare raspberry pi:
+- Initializare raspberry pi:
 - Power up
 - Aplicatia android primeste toata lista de retele wifi
 - Este selectata reteaua dorita, parola
 - LED-ul receiver-ului wifi se aprinde (albastru), iar raspberry-ul este conectat la reteaua locala
 
-5. Configurare raspberry pi
+- Configurare raspberry pi
 - Conectare prin ssh la raspberry pi - scanare retea pentru ip (RPI apare fie ca RaspberryPi fie ca Shenzhen something)
 - In fisierul: remotevision/setup_control/bluetooth2/HeadsetController.py
 variabila target tine ip-ul destinatiei (self.target = "172.19.7.106")
 - Salvare fisier, resetare
 
-6. Restart aplicatie android, reluare pasi de configurare internet
+- Restart aplicatie android, reluare pasi de configurare internet
 Dupa conectarea la retea aplicatia de desktop deschide o fereastra cu stream-ul video, iar led-ul rosu al camerei se aprinde, interfata grafica (fereastra mica) afiseaza "Connected!"
 
 
