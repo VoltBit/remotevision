@@ -18,8 +18,8 @@ Dupa initialziare, terminalul cere o cale catre fisierul batch.
 - Rulare aplicatie android
 
 - Initializare raspberry pi:
- Power up
- Aplicatia android primeste toata lista de retele wifi
+  Power up
+  Aplicatia android primeste toata lista de retele wifi
  Este selectata reteaua dorita, parola
  LED-ul receiver-ului wifi se aprinde (albastru), iar raspberry-ul este conectat la reteaua locala
 
