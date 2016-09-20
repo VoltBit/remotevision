@@ -18,16 +18,16 @@ Dupa initialziare, terminalul cere o cale catre fisierul batch.
 - Rulare aplicatie android
 
 - Initializare raspberry pi:
-  Power up
-  Aplicatia android primeste toata lista de retele wifi
- Este selectata reteaua dorita, parola
- LED-ul receiver-ului wifi se aprinde (albastru), iar raspberry-ul este conectat la reteaua locala
+  * Power up
+  * Aplicatia android primeste toata lista de retele wifi
+  * Este selectata reteaua dorita, parola
+  * LED-ul receiver-ului wifi se aprinde (albastru), iar raspberry-ul este conectat la reteaua locala
 
 - Configurare raspberry pi
- Conectare prin ssh la raspberry pi - scanare retea pentru ip (RPI apare fie ca RaspberryPi fie ca Shenzhen something)
- In fisierul: remotevision/setup_control/bluetooth2/HeadsetController.py
-variabila target tine ip-ul destinatiei (self.target = "172.19.7.106")
- Salvare fisier, resetare
+  * Conectare prin ssh la raspberry pi - scanare retea pentru ip (RPI apare fie ca RaspberryPi fie ca Shenzhen something)
+  * In fisierul: remotevision/setup_control/bluetooth2/HeadsetController.py
+  * variabila target tine ip-ul destinatiei (self.target = "172.19.7.106")
+  * Salvare fisier, resetare
 
 - Restart aplicatie android, reluare pasi de configurare internet
 Dupa conectarea la retea aplicatia de desktop deschide o fereastra cu stream-ul video, iar led-ul rosu al camerei se aprinde, interfata grafica (fereastra mica) afiseaza "Connected!"
