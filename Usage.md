@@ -45,6 +45,5 @@ Daca conexiunea la internet se pierde, aplicatia desktop este inchisa sau alte p
 Obs:
 Cand am rulat la facultate pe PC-ul cu windows am observat ca era un warning legat de avdec_h264. Asta inseamna ca poate nu a fost instalat codec-ul respectiv, odata cu gstreamer. Daca se intapla asta poti rula inca odata executabilul de instalare gstreamer cu optiunea "Custom" acolo sunt unele lucrur disabled din default care pot fi enabled. Nu am testat pentru ca nu am primit niciodata acel warning. In principiu nu trebuie sa apara nici un warning iar dupa rularea executabilului in consola trebuie sa apara ceva de genul:
 
-![alt text][ss]
+![alt text](https://github.com/VoltBit/remotevision/blob/master/ss.PNG)
 
-[ss]:https://github.com/VoltBit/remotevision/ss.PNG
